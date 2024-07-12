@@ -1,36 +1,27 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 public class Solution {
 
 	public static void main(String[] args) throws Exception, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sBuilder = new StringBuilder();
 
-		int tc = Integer.parseInt(br.readLine());
+		int tc = Integer.parseInt(bReader.readLine());
 
-		for (int i = 1; i <= tc; i++) {
-			int n = Integer.parseInt(br.readLine());
-			int sum = 0;
+		for (int t = 1; t <= tc; t++) {
+			int N = Integer.parseInt(bReader.readLine());
+			int result = (N / 2) * -1;
 
-			for (int j = 1; j <= n; j++) {
-				if (j % 2 == 0) {
-
-					sum -= j;
-				} else {
-					sum += j;
-				}
+			if (N % 2 == 1) {
+				result += N;
 			}
 
-			bw.write("#" + i + " " + sum + "\n");
-
+			sBuilder.append("#" + t + " " + result + "\n");
 		}
 
-		bw.flush();
-		bw.close();
+		System.out.println(sBuilder);
 	}
 
 }

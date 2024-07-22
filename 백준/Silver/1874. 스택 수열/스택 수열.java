@@ -14,23 +14,17 @@ public class Main {
 		int val = 1;
 
 		for (int i = 0; i < n; i++) {
-			int num = Integer.parseInt(bReader.readLine());
+			int target = Integer.parseInt(bReader.readLine());
 
-			if (stack.empty()) {
+			while (val <= target) {
 				stack.push(val);
 				val++;
-				sBuilder.append("+" + "\n");
+				sBuilder.append("+\n");
 			}
 
-			while (stack.peek() < num) {
-				stack.push(val);
-				val++;
-				sBuilder.append("+" + "\n");
-			}
-
-			if (stack.peek() == num) {
+			if (stack.peek() == target) {
 				stack.pop();
-				sBuilder.append("-" + "\n");
+				sBuilder.append("-\n");
 			} else {
 				System.out.println("NO");
 				return;
@@ -39,5 +33,4 @@ public class Main {
 
 		System.out.println(sBuilder);
 	}
-
 }

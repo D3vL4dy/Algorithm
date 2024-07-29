@@ -4,11 +4,15 @@ class Solution {
         int maxh = 0;
         
         for(int i = 0; i < sizes.length; i++){
-            int w = Math.max(sizes[i][0], sizes[i][1]);
-            int h = Math.min(sizes[i][0], sizes[i][1]);
+            if(sizes[i][0] < sizes[i][1]){
+                int temp = sizes[i][0];
+                sizes[i][0] = sizes[i][1];
+                sizes[i][1] = temp;
+            }
             
-            maxw = Math.max(maxw, w);
-            maxh = Math.max(maxh, h);
+            maxw = Math.max(maxw, sizes[i][0]);
+            maxh = Math.max(maxh, sizes[i][1]);
+
         }
         
         return maxw * maxh;

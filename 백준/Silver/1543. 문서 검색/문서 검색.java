@@ -8,18 +8,9 @@ public class Main {
         String doc = br.readLine();
         String word = br.readLine();
 
-        int cnt = 0;
-        int startIdx = 0;
-
-        while (true) {
-            int findIdx = doc.indexOf(word, startIdx);
-            if (findIdx < 0) {
-                break;
-            }
-
-            cnt++;
-            startIdx = findIdx + word.length();
-        }
+        String replaced = doc.replace(word, "");
+        int len = doc.length() - replaced.length();
+        int cnt = len / word.length();
 
         System.out.println(cnt);
     }

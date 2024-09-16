@@ -1,33 +1,34 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        String[] titles = new String[N];
+        Map<String, Integer> map = new HashMap<>(); // 책 제목에 맞는 카운트 값 저장
+
+        int max = 0;
         for (int i = 0; i < N; i++) {
-            titles[i] = br.readLine();
+            String book = br.readLine();
+            map.put(book, map.getOrDefault(book, 0) + 1);
+            max = Math.max(max, map.get(book));
         }
 
-        Arrays.sort(titles); // 사전순 비교를 위한 compareTo 메서드가 자동으로 호출됨
-
-        String maxTitle = titles[0]; // 가장 많이 팔린 책 제목
-        int maxCount = 1; // 그 책이 팔린 횟수
-        int currentCount = 1; // 현재 비교 중인 책 제목이 몇 번 나왔는지 저장
-        for (int i = 1; i < N; i++) {
-            if (!titles[i].equals(titles[i - 1])) {
-                currentCount = 0;
-            }
-            currentCount++;
-
-            if (currentCount > maxCount || (currentCount == maxCount && titles[i].compareTo(maxTitle) < 0)) {
-                maxTitle = titles[i];
-                maxCount = currentCount;
+        List<String> list = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            // 카운트의 최댓값을 구해 리스트에 추가
+            if (entry.getValue() == max) {
+                list.add(entry.getKey());
             }
         }
-        System.out.println(maxTitle);
+
+        Collections.sort(list);
+        System.out.println(list.get(0));
     }
 }

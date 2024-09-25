@@ -17,9 +17,11 @@ class Solution {
                         stack.pop();
                         answer += 2;
                     } else {
-                        // 스택에 값을 하나씩 넣고 해당 board의 값을 0으로 바꾼다.
+                        // 스택에 값을 추가한다.
                         stack.push(target);
                     }
+                    
+                    // 해당 board의 값을 0으로 바꾼다.
                     board[j][moves[i] - 1] = 0;
                     break;
                 }
